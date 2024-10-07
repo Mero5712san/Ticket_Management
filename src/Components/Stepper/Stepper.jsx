@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
@@ -8,84 +9,82 @@ import { styled } from '@mui/material/styles';
 
 const steps = ['Step 1', 'Step 2', 'Step 3', 'Step 4'];
 
-// Custom styles for the Stepper connector line
 const CustomConnector = styled(StepConnector)(({ theme }) => ({
     [`&.${stepConnectorClasses.alternativeLabel}`]: {
-      top: 0, // Adjust position to start in the center of the step
-      left: 'calc(50% - 1px)', // Center the line
+      top: 0, 
+      left: 'calc(50% - 1px)', 
       right: 'calc(50% - 1px)',
     },
     [`&.${stepConnectorClasses.active}`]: {
       '& .MuiStepConnector-line': {
-        borderColor: '#00BFA5', // Teal for active steps
+        borderColor: '#00BFA5', 
         borderWidth: 1,
-        borderStyle: 'dotted', // Dotted line for active steps
-        height: '40px',         // Set a specific height for the connector
-        margin: '0 0 5px 3px',  // Optional margin to space out the steps
+        borderStyle: 'dotted', 
+        height: '40px',        
+        margin: '0 0 5px 3px', 
         width: '1px',
       },
     },
     [`&.${stepConnectorClasses.completed}`]: {
       '& .MuiStepConnector-line': {
-        borderColor: '#00BFA5', // Teal for completed steps
+        borderColor: '#00BFA5', 
         borderWidth: 1,
-        borderStyle: 'dotted', // Dotted line for completed steps
-        height: '40px',         // Set a specific height for the connector
-        margin: '0 0 5px 3px',  // Optional margin to space out the steps
+        borderStyle: 'dotted', 
+        height: '40px',         
+        margin: '0 0 5px 3px',  
         width: '1px',
       },
     },
     [`& .MuiStepConnector-line`]: {
-      borderColor: '#e0e0e0', // Grey for non-active steps
-      borderWidth: 1,         // Line thickness
-      borderStyle: 'dotted',  // Dotted line for non-active steps
-      height: '40px',         // Set a specific height for the connector
-      margin: '0 0px 5px 3px',  // Optional margin to space out the steps
+      borderColor: '#e0e0e0', 
+      borderWidth: 1,         
+      borderStyle: 'dotted',  
+      height: '40px',         
+      margin: '0 0px 5px 3px',  
       width: '1px',  
       borderRadius:'0.1px', 
-        // Width of the line to ensure it's a line, not a box
     },
   }));
   
 
-// Custom styles for the Step Label and Icon
 const CustomStepLabel = styled(StepLabel)(({ theme }) => ({
   '& .MuiStepLabel-iconContainer': {
     '& .MuiStepIcon-root': {
       color: 'grey', 
       fontColor:'grey',
       border:'1px solid #e0e0e0',
-      borderRadius:'50%',// Grey color for inactive steps
+      borderRadius:'50%',
       '&.Mui-active': {
         color: '#00BFA5',
-        border:'1px solid #00BFA5', // Active step icon color (teal)
+        border:'1px solid #00BFA5',
       },
       '&.Mui-completed': {
         color: '#00BFA5',
-        border:'1px solid #00BFA5', // Completed step icon color (teal)
+        border:'1px solid #00BFA5', 
       },
-      fontSize: '2rem', // Increased icon size
+      fontSize: '2rem', 
     },
   },
   '& .MuiStepLabel-label': {
-    color: '#9e9e9e', // Inactive label color (light grey)
+    color: '#9e9e9e', 
     '&.Mui-active': {
-      color: '#00BFA5', // Active label color (teal)
+      color: '#00BFA5', 
     },
     '&.Mui-completed': {
-      color: '#00BFA5', // Completed label color (teal)
+      color: '#00BFA5', 
     },
     fontSize: '1rem',
   },
 }));
 
-export default function StepperComponent() {
+export default function StepperComponent({steppervalue}) {
+  // const [stepvalue , setStepValue] = useState(steppervalue)
   return (
     <Box sx={{ width: '100%' }}>
       <Stepper
-        activeStep={1}
+        activeStep={steppervalue -1 }
         orientation="vertical"
-        connector={<CustomConnector />} // Use the custom connector for centering
+        connector={<CustomConnector />} 
       >
         {steps.map((label) => (
           <Step key={label}>

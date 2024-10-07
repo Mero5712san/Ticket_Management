@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Button from '../../Components/Button/Button';
 import '../../Styles/GoalPageOne.css'
-const GoalpageOne = () => {
+const GoalpageOne = ({setOpen}) => {
 
     const [domain, setdomains] = useState([])
     const [elementactive , setelementactive] = useState("")
@@ -42,7 +42,7 @@ const GoalpageOne = () => {
                 </div>
             </div>
             <div className="button">
-                < Button />
+                < Button next={setOpen} />
             </div>
         </div>
     );

@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import close from '../../assets/close.svg'
 import '../../Styles/SideBox.css'
 import StepperComponent from '../Stepper/Stepper';
+import GoalPageThree from '../../Pages/GoalPages/GoalPageThree';
 import GoalPageTwo from '../../Pages/GoalPages/GoalPageTwo';
 import GoalpageOne from '../../Pages/GoalPages/GoalPageOne';
+import { useSelector } from 'react-redux';
 const style = {
     position: "absolute",
     top: "50%",
@@ -23,6 +25,8 @@ const style = {
 
 const GoalCreationComponent = ({ opencondition, setopencondition }) => {
     console.log(opencondition);
+    const open = useSelector((s)=>s.buttonState)
+
     return (
         <div >
             <Modal open={opencondition} onClose={opencondition}>
@@ -36,13 +40,14 @@ const GoalCreationComponent = ({ opencondition, setopencondition }) => {
                         </div>
                         {/* Add your modal content here */}
                         <div className="slider">
-                            <span className='slidercomponent'><StepperComponent /> </span>
-                            <hr color='#d0d0d0' width='0.5rem'/>
+                            <span className='slidercomponent'><StepperComponent steppervalue =  {open}/> </span>
+                            <hr color='#d0d0d0' width='0.5rem' />
                         </div>
                         <div>
-                            <GoalPageTwo/>
+                            {open === 1 && <GoalpageOne />}
+                            {open === 2 && <GoalPageTwo />}
+                            {open === 3 && <GoalPageThree />}
                             {/* content of the page will be here */}
-                            {/* <GoalpageOne /> */}
                         </div>
 
                     </div>

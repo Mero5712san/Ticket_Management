@@ -1,0 +1,100 @@
+.userselect{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    padding:1.2rem;
+}
+
+.userselect .heading{
+    font-size: 1.2rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    text-transform: capitalize;
+    padding-bottom:1rem ;
+}
+
+.userselect .lighttext{
+    color: #a2a2a2;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding-bottom:0.7rem;
+}
+
+.userselect .search{
+    display: flex;
+    flex-direction: row;
+    border: 1px solid #D0d0d0;
+    width: 100%;
+    border-radius: 0.5rem;
+    align-items: center;
+}
+
+.userselect .search input{
+    outline: none;
+    border: none;
+    color: #CCCCCC;
+    padding:0.2rem;
+    width:35vw;
+    font-size: 0.8rem;
+    padding-left:1rem;
+}
+
+.userselect .search img{
+    width: 1.3rem;
+    height: 1.3rem;
+}
+
+.userselect .existingmember{
+    margin-top:1rem;
+    display: flex;
+    flex-direction:column;
+    gap: 0.1rem;
+}
+
+.userselect .existingmember .users{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.userselect .existingmember .users .user .secondhalf img{
+    width: 1rem;
+    height: 1rem;
+
+}
+.userselect .existingmember .users .user img{
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.userselect .existingmember .users .user{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #D0d0d0;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+}
+
+.userselect .existingmember .users .user .firsthalf{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    gap: 0.5rem;
+}
+.userselect .existingmember .users .user .secondhalf{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    color: #a4a4a4;
+}
+
+.userselect .existingmember .users .user .secondhalf input{
+    margin-right: 1rem;
+}
