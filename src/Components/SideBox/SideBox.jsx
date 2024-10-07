@@ -4,6 +4,7 @@ import Modal from "@mui/material/Modal";
 import close from '../../assets/close.svg'
 import '../../Styles/SideBox.css'
 import StepperComponent from '../Stepper/Stepper';
+import GoalpageOne from '../../Pages/GoalPages/GoalPageOne';
 const style = {
     position: "absolute",
     top: "50%",
@@ -38,7 +39,8 @@ const GoalCreationComponent = ({ opencondition, setopencondition }) => {
                             <hr color='#d0d0d0' width='0.5rem'/>
                         </div>
                         <div>
-                            content of the page will be here
+                            {/* content of the page will be here */}
+                            <GoalpageOne />
                         </div>
 
                     </div>
