@@ -1,0 +1,49 @@
+.GoalTitleDiv{
+    display: flex;
+    height: 34vh;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #F6F7F9;
+    border-radius: 10px;
+    padding: 20px;
+}
+.goalTopDiv{
+    width: 100%;
+    margin: 2rem;
+    margin-left: 1.4rem;
+}
+.TextArea{
+    outline: none;
+    border: 0.5px solid rgb(213, 213, 213);
+    border-radius: 10px;
+    padding: 10px;
+    height: 20vh;
+    width: 31vw;
+}
+.hashtagField{
+    width: 8vw;
+    border-radius: 10px !important;
+}
+.hashDiv{
+    display: flex;
+    background-color: white;
+    align-items: center;
+    width: 10vw;
+    border-radius: 20px;
+    border: 0.5px solid rgb(213, 213, 213);
+}
+.GoaliconDiv{
+    padding: 10px;
+    background-color: #F1F1F1;
+    border-radius: 50%;
+    align-items: center;
+    display: flex;
+}
+.GoalPageOneOptionDiv{
+    display: flex;
+    align-items: center;
+    margin-top: 1.5rem;
+    gap: 1rem;
+}
