@@ -77,12 +77,12 @@ const CustomStepLabel = styled(StepLabel)(({ theme }) => ({
   },
 }));
 
-export default function StepperComponent() {
-  const [stepvalue , setStepValue] = useState(0)
+export default function StepperComponent({steppervalue}) {
+  // const [stepvalue , setStepValue] = useState(steppervalue)
   return (
     <Box sx={{ width: '100%' }}>
       <Stepper
-        activeStep={stepvalue}
+        activeStep={steppervalue -1 }
         orientation="vertical"
         connector={<CustomConnector />} 
       >
