@@ -1,0 +1,35 @@
+.lowercontent{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    gap: 1rem;
+}
+
+.lowercontent .back{
+    display: flex;
+    border: 1px solid #DADADA ;
+    background:transparent;
+    width:48%;
+    justify-content: center;
+    align-items: center;
+    padding:1rem 0.3rem;
+    border-radius: 0.5rem;
+    color: #000000;
+    font-size: 1rem;
+    font-weight: 550;
+}
+
+.lowercontent .next{
+    display: flex;
+    border: none;
+    /* border: 1px solid #DADADA ; */
+    background-color:#01B7A8;
+    width:48%;
+    justify-content: center;
+    align-items: center;
+    padding:1rem 0.3rem;
+    border-radius: 0.5rem;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+}
