@@ -5,6 +5,7 @@ import close from '../../assets/close.svg'
 import '../../Styles/SideBox.css'
 import StepperComponent from '../Stepper/Stepper';
 import GoalPageThree from '../../Pages/GoalPages/GoalPageThree';
+import GoalPageTwo from '../../Pages/GoalPages/GoalPageTwo';
 import GoalpageOne from '../../Pages/GoalPages/GoalPageOne';
 const style = {
     position: "absolute",
@@ -25,7 +26,7 @@ const GoalCreationComponent = ({ opencondition, setopencondition }) => {
     console.log(opencondition);
     return (
         <div >
-            <Modal open={opencondition} onClose={() => setopencondition(false)}>
+            <Modal open={opencondition} onClose={opencondition}>
                 <Box sx={style}>
                     <div className='SideBox'>
                         <div className='close'>
@@ -40,6 +41,7 @@ const GoalCreationComponent = ({ opencondition, setopencondition }) => {
                             <hr color='#d0d0d0' width='0.5rem'/>
                         </div>
                         <div>
+                            <GoalPageTwo/>
                             {/* content of the page will be here */}
                             {/* <GoalpageOne /> */}
                             <GoalPageThree />
