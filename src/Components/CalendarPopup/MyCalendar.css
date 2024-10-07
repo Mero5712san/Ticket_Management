@@ -1,0 +1,68 @@
+
+.react-calendar {
+    border: none; 
+    box-shadow: none; 
+  }
+  
+  .calendar-dropdowns {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px;
+
+  }
+  
+  .calendar-dropdowns select {
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.2s ease;
+  }
+  
+  .calendar-dropdowns select:focus,
+  .calendar-dropdowns select:hover {
+    border-color: #66bb6a; 
+  }
+  
+  .range {
+    background-color: #83e888; 
+    color: black;
+  }
+  
+  .range-start,
+  .range-end {
+    background-color: #66c86b; 
+    color: white;
+  }
+  
+  .range-start {
+    border-radius: 10px 0 0 10px;
+  }
+  
+  .range-end {
+    border-radius: 0 10px 10px 0; 
+  }
+  
+  .react-calendar__tile {
+    margin: 0;
+    padding: 10px; 
+  }
+  
+  
+  .calendar-para {
+    display: flex;
+    justify-content: space-between; 
+    width: 100%;
+    margin-top: 20px; 
+    font-size: 18px; 
+    font-weight: bold;
+  }
+  
+  .calendar-para span {
+    margin: 0 20px; 
+  }
+  
