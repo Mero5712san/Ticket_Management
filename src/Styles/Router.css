@@ -1,0 +1,15 @@
+.mastercontainer{
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.mastercontainer .pagecontainer{
+    width: 94vw;
+    background-color: #f9f9f9;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}

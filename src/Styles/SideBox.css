@@ -1,0 +1,30 @@
+.SideBox{
+    position: relative;
+    /* background-color: red; */
+    width: 40vw;
+    height: 100vh;
+    display: flex;
+}
+.SideBox .close{
+    position: absolute;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.3rem;
+    top:0.7rem;
+    left: -3.5rem;
+}
+.SideBox .close img{
+    width:1.5rem;
+    margin: 0.5rem 0.5rem 0.3rem 0.5rem;
+    height:1.5rem;
+}
+
+.SideBox .slider .slidercomponent{
+    margin-top:1rem;
+}
+.SideBox .slider{
+    padding: 0rem 1rem;
+    display: flex;
+}

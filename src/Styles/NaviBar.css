@@ -1,0 +1,47 @@
+.NaviBarContainer {
+    display: flex;
+    flex-direction: row;
+    width: 94vw;
+    padding: 0.5rem;
+    background-color: #ffffff;
+    align-items: center;
+    justify-content: space-between;
+    /* border-bottom: 0.1px solid grey; */
+}
+
+.NaviBarContainer .opts {
+    display: flex;
+    flex-direction: row;
+    margin-right: 1rem;
+    gap: 1rem;
+    align-items: center;
+}
+
+.NaviBarContainer .opts select {
+    border: 1px solid #000000;
+    border-radius: 0.2rem;
+    padding: 0.3rem;
+    outline: none;
+}
+
+.NaviBarContainer .opts .icons .profile img{
+    width: 2rem;
+    height: 2rem;
+    border-radius:0.2rem;
+}
+.NaviBarContainer .opts .icons img{
+    width: 1rem;
+    height: 1rem;
+    /* margin: 0.3rem; */
+}
+.NaviBarContainer .opts .icons {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.NaviBarContainer .heading {
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 0.01rem;
+}
