@@ -11,12 +11,14 @@
     background:transparent;
     width:48%;
     justify-content: center;
+    text-transform: uppercase;
     align-items: center;
     padding:1rem 0.3rem;
     border-radius: 0.5rem;
     color: #000000;
     font-size: 1rem;
     font-weight: 550;
+    cursor: pointer;
 }
 
 .lowercontent .next{
@@ -24,6 +26,7 @@
     border: none;
     /* border: 1px solid #DADADA ; */
     background-color:#01B7A8;
+    text-transform: uppercase;
     width:48%;
     justify-content: center;
     align-items: center;
@@ -31,5 +34,6 @@
     border-radius: 0.5rem;
     color: #ffffff;
     font-size: 1rem;
-    font-weight: 600;
+    font-weight: 550;
+    cursor: pointer;
 }

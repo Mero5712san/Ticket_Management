@@ -6,6 +6,7 @@ import axios from "axios";
 import { TextField, Typography } from "@mui/material";
 import Button from "../../Components/Button/Button";
 import { useSelector } from "react-redux";
+import CalendarPopup from "../../Components/CalendarPopup/CalendarPopup";
 
 const GoalPageTwo = () => {
   const [hashtagData, setHashtagData] = useState([]);
@@ -13,6 +14,7 @@ const GoalPageTwo = () => {
   const [hashtagOptions, setHashtagOptions] = useState([]);
   const [hashtag_id,setHashtag_id] = useState(null)
   const [loading, setLoading] = useState(false);
+  const [calenderOpen, setCalenderOpen] = useState(false)
   const GoalUsers = useSelector((s) => s.createGoal.goal_users.users); // Correctly access goal_users from Redux store
   console.log("goalusers", GoalUsers);
   
@@ -52,6 +54,7 @@ const GoalPageTwo = () => {
       fontFamily: "sans-serif",
       backgroundColor: "white",
       marginRight: "20px",
+      marginLeft:"0px",
       color: "white",
       borderRadius: "20px",
       border: "none",
@@ -119,6 +122,10 @@ const GoalPageTwo = () => {
     return filtered;
   };
 
+  const handleCalenderClick = () => {
+    setCalenderOpen(!calenderOpen)
+  }
+
   return (
     <div className="GoalP2MainDiv">
       <div className="goalTopDiv">
@@ -127,7 +134,7 @@ const GoalPageTwo = () => {
             <textarea className="TextArea" placeholder="Test" onChange={(e) => setTitle(e.target.value)}></textarea>
           </div>
           <div className="hashDiv">
-            <div style={{ padding: "5px", paddingRight: "0px" }}>
+            <div style={{ padding: "5px", paddingRight: "0px",paddingTop:"7px"}}>
               <TagIcon sx={{ height: "20px", color: "gray" }} />
             </div>
             <div>
@@ -184,7 +191,8 @@ const GoalPageTwo = () => {
             />
           </div>
         </div>
-        <div className="GoalPageOneOptionDiv" style={{gap:"0.8rem"}}>
+        <CalendarPopup open={calenderOpen} setOpen={setCalenderOpen}/>
+        <div className="GoalPageOneOptionDiv" style={{gap:"0.8rem"}} onClick={handleCalenderClick}>
           <div className="GoaliconDiv">
             <img src="./images/calendar.png" alt="" height={18} />
           </div>
