@@ -23,7 +23,7 @@
     width: 31vw;
 }
 .hashtagField{
-    width: 8vw;
+    width: 9vw;
     border-radius: 10px !important;
 }
 .hashDiv{
@@ -45,5 +45,11 @@
     display: flex;
     align-items: center;
     margin-top: 1.5rem;
-    gap: 1rem;
+}
+.GoalP2MainDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+    padding-bottom: 1rem;
 }

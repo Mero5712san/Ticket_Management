@@ -4,7 +4,8 @@ import Modal from "@mui/material/Modal";
 import close from '../../assets/close.svg'
 import '../../Styles/SideBox.css'
 import StepperComponent from '../Stepper/Stepper';
-import GoalPageTwo from '../../Pages/GoalPageTwo';
+import GoalPageTwo from '../../Pages/GoalPages/GoalPageTwo';
+import GoalpageOne from '../../Pages/GoalPages/GoalPageOne';
 const style = {
     position: "absolute",
     top: "50%",
@@ -40,6 +41,8 @@ const GoalCreationComponent = ({ opencondition, setopencondition }) => {
                         </div>
                         <div>
                             <GoalPageTwo/>
+                            {/* content of the page will be here */}
+                            {/* <GoalpageOne /> */}
                         </div>
 
                     </div>

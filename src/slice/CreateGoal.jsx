@@ -13,7 +13,13 @@ const initialState = {
         is_active:true
     },
     goal_users:{
-        users:[]
+        users:[{
+            user_id:1,
+            is_owner:true,
+            is_assignee:false,
+            is_active:true,
+            path:'/images/user1.png'
+        }]
     },
     goal_phases:{
         phases:[]
