@@ -48,6 +48,7 @@ const GoalPageThree = () => {
                         <label htmlFor="no">No, skip for now</label>
                     </div>
                 </div>
+                <hr style={{marginTop:"1rem"}}/>
             </div>
             <div className="lowercontent">
                 <Button />

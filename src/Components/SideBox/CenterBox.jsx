@@ -4,6 +4,7 @@ import Modal from "@mui/material/Modal";
 import UserSelect from '../Userselect/UserSelect';
 import close from '../../assets/close.svg'
 import '../../Styles/CenterBox.css'
+import { useSelector } from 'react-redux';
 
 const style = {
     position: "absolute",

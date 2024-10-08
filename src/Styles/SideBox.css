@@ -23,8 +23,10 @@
 
 .SideBox .slider .slidercomponent{
     margin-top:1rem;
+    margin-left: 0.2rem;
 }
 .SideBox .slider{
-    padding: 0rem 1rem;
+    padding: 0rem 0.6rem;
     display: flex;
+    border-right: 1px solid #d0d0d0;
 }
