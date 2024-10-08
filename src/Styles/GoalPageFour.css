@@ -2,6 +2,113 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 100%;
+    width:38vw;
     height: 100vh;
+    padding: 1.5rem;
+    /* background-color: antiquewhite; */
+}
+
+.pagefour .uppercontent{
+    display: flex;
+    flex-direction: column;
+}
+
+.pagefour .uppercontent .heading{
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.pagefour .uppercontent .addphases{
+    border: 1px solid #d0d0d0;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    margin-top: 3rem;
+}
+
+.pagefour .uppercontent .addphases button{
+    border: none;
+    outline: none;
+    padding: 0.5rem;
+    font-weight: 500;
+    background-color: transparent;
+    color: #d0d0d0;
+}
+
+.pagefour .uppercontent .addphases input{
+    border: none;
+    outline: none;
+    padding: 0.5rem;
+    /* background-color: antiquewhite; */
+    width: 100%;
+}
+
+.pagefour .uppercontent .phaselist{
+    display: flex;
+    flex-direction: column;
+    margin-top: 1.5rem;
+}
+
+.pagefour .uppercontent .phaselist .phase{
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.5rem;
+    background-color: #F5F7F8;
+}
+
+.pagefour .uppercontent .phaselist .phase .name{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding:0.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.pagefour .uppercontent .phaselist .phase .name img{
+    width: 1rem;
+    margin-right:1rem;
+}
+
+.pagefour .uppercontent .phaselist .phase .options{
+    display: flex;
+    justify-content: space-around;
+    padding:0.5rem;
+    padding: 0;
+}
+
+.pagefour .uppercontent .phaselist .phase .options .box{
+    display: flex;
+    border: 1px solid   #E4EAEE;
+    background-color: #ffffff;
+    color:#00B7A8;
+    text-transform: capitalize;
+    padding: 0.4rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-radius: 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    /* margin: 1rem; */
+    margin: 1rem 0rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.pagefour .uppercontent .phaselist .phase .options .box .number{
+    margin:0rem 0.5rem;
+    border: 1px solid #00B7A8;
+    border-radius: 50%;
+    height: 1rem;
+    width: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size:0.7rem;
+}
+
+.pagefour .lowercontent{
+    width:37w;
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from '../../Components/Button/Button';
-import del from '../../assets/delete.svg'
+import del from '../../assets/deletegray.svg'
 import '../../Styles/GoalPageFour.css'
 const GoalPagesFour = () => {
     return (
@@ -20,7 +20,7 @@ const GoalPagesFour = () => {
                             <li><img src={del} alt="" /></li>
                         </div>
                         <div className="options">
-                            <div>
+                            <div className='box'>
                                 <div className='number'>
                                     1
                                 </div>
@@ -28,9 +28,17 @@ const GoalPagesFour = () => {
                                     invite Members
                                 </div>
                             </div>
-                            <div>
+                            <div className='box'>
                                 <div className='number'>
                                     2
+                                </div>
+                                <div className='text'>
+                                    setup workflow
+                                </div>
+                            </div>
+                            <div className='box'>
+                                <div className='number'>
+                                    3
                                 </div>
                                 <div className='text'>
                                     set time frame
