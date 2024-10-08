@@ -47,7 +47,7 @@ const GoalCreationComponent = ({ opencondition, setopencondition }) => {
                         <div>
                             {open === 1 && <GoalpageOne />}
                             {open === 2 && <GoalPageTwo />}
-                            {open === 3 && <GoalPageThree />}
+                            {open === 3 && <GoalPageThree setopencondition={setopencondition} />}
                             {open == 4 && <GoalPagesFour />}
           {/* content of the page will be here */}
                         </div>

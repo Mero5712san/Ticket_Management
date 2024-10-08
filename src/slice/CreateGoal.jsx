@@ -8,7 +8,7 @@ const initialState = {
         hashtag_id:null,
         start_at:null,
         end_at:null,
-        status_id:null,
+        status_id:2,
         goal_created_by:1,
         is_active:true
     },
@@ -34,14 +34,6 @@ const CreateGoalInsertion = createSlice({
             const data = action.payload;
             state.push(data)
         },
-        setStartAt(state, action){
-            const data = action.payload
-            state.goal.start_at = data
-        },
-        setEndAt(state, action){
-            const data = action.payload
-            state.goal.end_at = data
-        },
         setGoalUsers(state, action) {
             const users = action.payload;
             state.goal_users.users = users;
@@ -49,9 +41,17 @@ const CreateGoalInsertion = createSlice({
         setGoalDomainId(state,action){
             const data = action.payload
             state.goal.domain_id = data
+        },
+        addGoaltitles(state,action){
+            const {title,description,hashtag_id,startAt,endAt} = action.payload
+            state.goal.goal_title = title
+            state.goal.goal_description = description
+            state.goal.hashtag_id = hashtag_id
+            state.goal.start_at = startAt
+            state.goal.end_at = endAt
         }
     }
 })
 
-export const  {setGoalName, setStartAt, setEndAt, setGoalDomainId, setGoalUsers} = CreateGoalInsertion.actions
+export const  {setGoalName, setStartAt, setEndAt, setGoalDomainId, addGoaltitles, setGoalUsers} = CreateGoalInsertion.actions
 export const  CreateGoal = CreateGoalInsertion.reducer

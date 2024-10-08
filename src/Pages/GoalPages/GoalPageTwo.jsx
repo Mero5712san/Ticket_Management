@@ -11,6 +11,7 @@ import CalendarPopup from "../../Components/CalendarPopup/CalendarPopup";
 import CenterBox from "../../Components/SideBox/CenterBox";
 import { useDispatch } from "react-redux";
 import { Increment, Decrement } from "../../slice/Buttonslice";
+import { addGoaltitles } from "../../slice/CreateGoal";
 import { setEndAt, setStartAt } from "../../slice/CreateGoal";
 
 const GoalPageTwo = () => {
@@ -147,6 +148,7 @@ const GoalPageTwo = () => {
 
   const handleIncrement = async () => {
     dispatch(Increment());
+    dispatch(addGoaltitles({title,description,hashtag_id,startAt,endAt}))
   };
 
   const handleDecrement = async () => {

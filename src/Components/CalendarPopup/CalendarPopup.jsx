@@ -65,9 +65,6 @@ function CalendarPopup({ open, setOpen, setStart, setEnd, start, end }) {
        .set('minute', parsedEndTime.minute())   
        .format('MMMM D, YYYY h:mm A');
 
-        dispatch(setStartAt(start_at))
-        dispatch(setEndAt(end_at))
-
        setStart(start_at)
        setEnd(end_at)
 
