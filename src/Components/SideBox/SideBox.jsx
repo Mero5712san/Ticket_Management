@@ -8,6 +8,7 @@ import GoalPageThree from '../../Pages/GoalPages/GoalPageThree';
 import GoalPageTwo from '../../Pages/GoalPages/GoalPageTwo';
 import GoalpageOne from '../../Pages/GoalPages/GoalPageOne';
 import { useSelector } from 'react-redux';
+import GoalPagesFour from '../../Pages/GoalPages/GoalPagesFour';
 const style = {
     position: "absolute",
     top: "50%",
@@ -46,9 +47,9 @@ const GoalCreationComponent = ({ opencondition, setopencondition }) => {
                             {open === 1 && <GoalpageOne />}
                             {open === 2 && <GoalPageTwo />}
                             {open === 3 && <GoalPageThree />}
+                            {open == 4 && <GoalPagesFour />}
                             {/* content of the page will be here */}
                         </div>
-
                     </div>
                 </Box>
             </Modal>

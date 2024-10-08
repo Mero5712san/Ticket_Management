@@ -202,7 +202,7 @@ const GoalPageTwo = () => {
             <Typography>Set Time Frame</Typography>
           </div>
         </div>
-        <CenterBox opencondition={userOpen} setopencondition={setUserOpen}/>
+        <CenterBox opencondition={userOpen} setopencondition={setUserOpen} />
         <div className="GoalPageOneOptionDiv" style={{gap:"0.8rem"}} onClick={()=>setUserOpen(true)} >
           <div className="GoaliconDiv">
             <img src="./images/add-user.png" alt="" height={18} />

@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import '../../Styles/UserSelect.css';
+import { setGoalUsers } from '../../slice/CreateGoal';
 import searchIcon from '../../assets/search.svg';
 import profile from '../../assets/profile.png';
 import del from '../../assets/delete.svg';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
 
 const UserSelect = () => {
     const [users, setUsers] = useState([]);
-    const [filteredUsers, setFilteredUsers] = useState([]); // Filtered users based on search
+    const [filteredUsers, setFilteredUsers] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
-    const [selectedUsers, setSelectedUsers] = useState([]); // Store selected users
-    const [userRoles, setUserRoles] = useState([]); // Store selected users with their roles (owner/assignee)
+    const [selectedUsers, setSelectedUsers] = useState([]);
+    const [userRoles, setUserRoles] = useState([]);
 
-    // Fetch users from API
+    const dispatch = useDispatch(); // Initialize dispatch
+
     const fetchUsers = async () => {
         try {
             const response = await axios.get('http://localhost:8081/master/users');
@@ -28,31 +31,27 @@ const UserSelect = () => {
         fetchUsers();
     }, []);
 
-    // Filter users based on search input and remove already selected users from suggestions
     useEffect(() => {
         if (searchTerm) {
             const filtered = users
                 .filter(user =>
                     user.name.toLowerCase().includes(searchTerm.toLowerCase())
                 )
-                .filter(user => !selectedUsers.some(selected => selected.id === user.id)); // Exclude selected users
+                .filter(user => !selectedUsers.some(selected => selected.id === user.id));
             setFilteredUsers(filtered);
         } else {
             setFilteredUsers([]);
         }
     }, [searchTerm, users, selectedUsers]);
 
-    // Handle user selection and prevent duplicates
     const handleUserSelect = (user) => {
         if (!selectedUsers.some(selectedUser => selectedUser.id === user.id)) {
             setSelectedUsers(prevSelectedUsers => [...prevSelectedUsers, user]);
-            // Add the selected user with default roles (none checked) to userRoles
             setUserRoles(prevUserRoles => [...prevUserRoles, { id: user.id, name: user.name, owner: false, assignee: false }]);
         }
-        setSearchTerm(''); // Clear the search after selection
+        setSearchTerm('');
     };
 
-    // Handle user deletion from selected list
     const handleUserDelete = (userId) => {
         setSelectedUsers(prevSelectedUsers =>
             prevSelectedUsers.filter(user => user.id !== userId)
@@ -62,7 +61,6 @@ const UserSelect = () => {
         );
     };
 
-    // Handle role changes (owner or assignee)
     const handleRoleChange = (userId, role) => {
         setUserRoles(prevUserRoles =>
             prevUserRoles.map(userRole =>
@@ -71,80 +69,101 @@ const UserSelect = () => {
         );
     };
 
+    const handleSave = () => {
+        const formattedUsers = userRoles.map(user => ({
+            user_id: user.id,
+            is_owner: user.owner,
+            is_assignee: user.assignee,
+            is_active: true,
+            path: `/images/user${user.id}.png` // Example of user image path
+        }));
+
+        // Dispatch action to update Redux state
+        dispatch(setGoalUsers(formattedUsers));
+    };
+
+
 
 
     console.table(userRoles)
 
     return (
         <div className="userselect">
-            <div className="heading">
-                <li>Add Members</li>
-            </div>
-            <div className="lighttext">
-                <li>search & add members</li>
-            </div>
-            <div className="search">
-                <li><img src={searchIcon} alt="Search" /></li>
-                <li>
-                    <input
-                        type="search"
-                        placeholder="Search"
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                    />
-                </li>
-            </div>
+            <div className="uppercontent">
+                <div className="heading">
+                    <li>Add Members</li>
+                </div>
+                <div className="lighttext">
+                    <li>search & add members</li>
+                </div>
+                <div className="search">
+                    <li><img src={searchIcon} alt="Search" /></li>
+                    <li>
+                        <input
+                            type="search"
+                            placeholder="Search"
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                        />
+                    </li>
+                </div>
 
-            {/* Display search suggestions */}
-            {filteredUsers.length > 0 && (
+                {/* Display search suggestions */}
+                {filteredUsers.length > 0 && (
+                    <div className="existingmember">
+                        {filteredUsers.map(user => (
+                            <div className="users" key={user.id}>
+                                <div className="user" onClick={() => handleUserSelect(user)}>
+                                    <div className="firsthalf">
+                                        <li><img src={profile} alt="Profile" /></li>
+                                        <li>{user.name}</li>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                )}
+
+                {/* Display selected users */}
                 <div className="existingmember">
-                    {filteredUsers.map(user => (
-                        <div className="users" key={user.id}>
-                            <div className="user" onClick={() => handleUserSelect(user)}>
+                    <div className="lighttext">
+                        existing members
+                    </div>
+                    <div className="users">
+                        {selectedUsers.map((user) => (
+                            <div key={user.id} className="user">
                                 <div className="firsthalf">
                                     <li><img src={profile} alt="Profile" /></li>
                                     <li>{user.name}</li>
                                 </div>
+                                <div className="secondhalf">
+                                    <li>
+                                        <input
+                                            type="checkbox"
+                                            checked={userRoles.find(role => role.id === user.id)?.owner || false}
+                                            onChange={() => handleRoleChange(user.id, 'owner')}
+                                        /> owner
+                                    </li>
+                                    <li>
+                                        <input
+                                            type="checkbox"
+                                            checked={userRoles.find(role => role.id === user.id)?.assignee || false}
+                                            onChange={() => handleRoleChange(user.id, 'assignee')}
+                                        /> assignee
+                                    </li>
+                                    <li>
+                                        <img src={del} alt="Delete" onClick={() => handleUserDelete(user.id)} />
+                                    </li>
+                                </div>
                             </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
-            )}
-
-            {/* Display selected users */}
-            <div className="existingmember">
-                <div className="lighttext">
-                    existing members
-                </div>
-                <div className="users">
-                    {selectedUsers.map((user) => (
-                        <div key={user.id} className="user">
-                            <div className="firsthalf">
-                                <li><img src={profile} alt="Profile" /></li>
-                                <li>{user.name}</li>
-                            </div>
-                            <div className="secondhalf">
-                                <li>
-                                    <input
-                                        type="checkbox"
-                                        checked={userRoles.find(role => role.id === user.id)?.owner || false}
-                                        onChange={() => handleRoleChange(user.id, 'owner')}
-                                    /> owner
-                                </li>
-                                <li>
-                                    <input
-                                        type="checkbox"
-                                        checked={userRoles.find(role => role.id === user.id)?.assignee || false}
-                                        onChange={() => handleRoleChange(user.id, 'assignee')}
-                                    /> assignee
-                                </li>
-                                <li>
-                                    <img src={del} alt="Delete" onClick={() => handleUserDelete(user.id)} />
-                                </li>
-                            </div>
-                        </div>
-                    ))}
-                </div>
+            </div>
+            <div className="lowercontent">
+                <button className={selectedUsers.length > 0 ? "" : "disabled"} onClick={handleSave}>
+                    save
+                </button>
             </div>
         </div>
     );
