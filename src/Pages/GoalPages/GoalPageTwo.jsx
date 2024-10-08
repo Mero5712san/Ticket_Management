@@ -8,12 +8,15 @@ import Button from "../../Components/Button/Button";
 import { useSelector } from "react-redux";
 import CalendarPopup from "../../Components/CalendarPopup/CalendarPopup";
 import CenterBox from "../../Components/SideBox/CenterBox";
+import { useDispatch } from "react-redux";
+import { Increment, Decrement } from "../../slice/Buttonslice";
+import { setEndAt, setStartAt } from "../../slice/CreateGoal";
 
 const GoalPageTwo = () => {
   const [hashtagData, setHashtagData] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [hashtagOptions, setHashtagOptions] = useState([]);
-  const [hashtag_id,setHashtag_id] = useState(null)
+  const [hashtag_id, setHashtag_id] = useState(null);
   const [loading, setLoading] = useState(false);
   const [calenderOpen, setCalenderOpen] = useState(false)
   const [userOpen, setUserOpen] = useState(false)
@@ -21,7 +24,7 @@ const GoalPageTwo = () => {
   const [endAt, setEndAt] = useState(null)
   const GoalUsers = useSelector((s) => s.createGoal.goal_users.users); // Correctly access goal_users from Redux store
   console.log("goalusers", GoalUsers);
-  
+  const  dispatch = useDispatch();
 
   // New states for title and description
   const [title, setTitle] = useState("");
@@ -58,7 +61,7 @@ const GoalPageTwo = () => {
       fontFamily: "sans-serif",
       backgroundColor: "white",
       marginRight: "20px",
-      marginLeft:"0px",
+      marginLeft: "0px",
       color: "white",
       borderRadius: "20px",
       border: "none",
@@ -75,13 +78,13 @@ const GoalPageTwo = () => {
     placeholder: (base) => ({
       ...base,
       fontSize: "13px", // Set the desired placeholder font size
-      color: "gray",     // Optional: change the placeholder color
+      color: "gray", // Optional: change the placeholder color
     }),
   };
 
   const customComponents = {
     IndicatorSeparator: () => null,
-    DropdownIndicator: () => null,  // Hides the arrow indicator
+    DropdownIndicator: () => null, // Hides the arrow indicator
   };
 
   // Handler for adding a new hashtag
@@ -105,8 +108,8 @@ const GoalPageTwo = () => {
         // Update state with the new hashtag
         setHashtagOptions((prevOptions) => [...prevOptions, newOption]);
         setHashtagData((prevData) => [...prevData, newHashtag]);
-        setHashtag_id(newOption.value)
-        setInputValue(newOption.label)
+        setHashtag_id(newOption.value);
+        setInputValue(newOption.label);
         console.log(newOption.value);
       }
     } catch (error) {
@@ -120,25 +123,44 @@ const GoalPageTwo = () => {
     const filtered = options.filter((option) =>
       option?.label?.toLowerCase().includes(input?.toLowerCase() || "")
     );
-    if (input && !options.some((option) => option.label?.toLowerCase() === input?.toLowerCase())) {
+    if (
+      input &&
+      !options.some(
+        (option) => option.label?.toLowerCase() === input?.toLowerCase()
+      )
+    ) {
       filtered.push({ label: `${input}`, value: "add-new" });
     }
     return filtered;
   };
 
   const handleCalenderClick = () => {
-    setCalenderOpen(!calenderOpen)
-  }
+    setCalenderOpen(!calenderOpen);
+  };
+
+  const handleIncrement = async () => {
+    dispatch(Increment());
+  };
+
+  const handleDecrement = async () => {
+    dispatch(Decrement());
+  };
 
   return (
     <div className="GoalP2MainDiv">
       <div className="goalTopDiv">
         <div className="GoalTitleDiv">
           <div>
-            <textarea className="TextArea" placeholder="Test" onChange={(e) => setTitle(e.target.value)}></textarea>
+            <textarea
+              className="TextArea"
+              placeholder="Test"
+              onChange={(e) => setTitle(e.target.value)}
+            ></textarea>
           </div>
           <div className="hashDiv">
-            <div style={{ padding: "5px", paddingRight: "0px",paddingTop:"7px"}}>
+            <div
+              style={{ padding: "5px", paddingRight: "0px", paddingTop: "7px" }}
+            >
               <TagIcon sx={{ height: "20px", color: "gray" }} />
             </div>
             <div>
@@ -154,15 +176,13 @@ const GoalPageTwo = () => {
                 onChange={(selectedOption) => {
                   if (selectedOption.value === "add-new") {
                     addNewHashtag(inputValue);
-                    setInputValue(inputValue)
-                    setHashtag_id(selectedOption.value)
+                    setInputValue(inputValue);
+                    setHashtag_id(selectedOption.value);
                     console.log(selectedOption.value);
-                  }
-                  else{
-                    setInputValue(inputValue)
-                    setHashtag_id(selectedOption.value)
+                  } else {
+                    setInputValue(inputValue);
+                    setHashtag_id(selectedOption.value);
                     console.log(selectedOption.value);
-                    
                   }
                 }}
                 isLoading={loading}
@@ -175,27 +195,27 @@ const GoalPageTwo = () => {
             <img src="./images/document.png" alt="" height={18} />
           </div>
           <div>
-            <TextField 
-            placeholder="Add Description" 
-            size="small" 
-            sx={{
-              "& .MuiOutlinedInput-root": {
-                "& fieldset": {
-                  border: "none", // Removes the border
+            <TextField
+              placeholder="Add Description"
+              size="small"
+              sx={{
+                "& .MuiOutlinedInput-root": {
+                  "& fieldset": {
+                    border: "none", // Removes the border
+                  },
+                  "&:hover fieldset": {
+                    border: "none", // Removes the border on hover
+                  },
+                  "&.Mui-focused fieldset": {
+                    border: "none", // Removes the border on focus
+                  },
                 },
-                "&:hover fieldset": {
-                  border: "none", // Removes the border on hover
-                },
-                "&.Mui-focused fieldset": {
-                  border: "none", // Removes the border on focus
-                },
-              },
-            }}
-            onChange={(e) => setDescription(e.target.value)} // Update description on change
+              }}
+              onChange={(e) => setDescription(e.target.value)} // Update description on change
             />
           </div>
         </div>
-        <CalendarPopup open={calenderOpen} setOpen={setCalenderOpen} setStart={setStartAt} setEnd={setEndAt} />
+        <CalendarPopup open={calenderOpen} setOpen={setCalenderOpen}  setStart={setStartAt} setEnd={setEndAt} />
         <div className="GoalPageOneOptionDiv" style={{gap:"0.8rem"}} onClick={handleCalenderClick}>
           <div className="GoaliconDiv">
             <img src="./images/calendar.png" alt="" height={18} />
@@ -206,23 +226,29 @@ const GoalPageTwo = () => {
             }
           </div>
         </div>
-        <CenterBox opencondition={userOpen} setopencondition={setUserOpen}/>
-        <div className="GoalPageOneOptionDiv" style={{gap:"0.8rem"}} onClick={()=>setUserOpen(true)} >
+        <CenterBox opencondition={userOpen} setopencondition={setUserOpen} />
+        <div
+          className="GoalPageOneOptionDiv"
+          style={{ gap: "0.8rem" }}
+          onClick={() => setUserOpen(true)}
+        >
           <div className="GoaliconDiv">
             <img src="./images/add-user.png" alt="" height={18} />
           </div>
-          <div style={{display:"flex",gap:"0.5rem"}}>
-          {GoalUsers.map((user) => (
+          <div style={{ display: "flex", gap: "0.5rem" }}>
+            {GoalUsers.map((user) => (
               <div key={user.user_id}>
                 <img src={user.path} alt="" height={30} />
               </div>
             ))}
-            <div><img src="./images/story.png" alt="" height={30}/></div>
+            <div>
+              <img src="./images/story.png" alt="" height={30} />
+            </div>
           </div>
         </div>
       </div>
       <div className="GoalP2BtnDiv">
-        <Button />
+        <Button next={handleIncrement} back={handleDecrement}/>
       </div>
     </div>
   );

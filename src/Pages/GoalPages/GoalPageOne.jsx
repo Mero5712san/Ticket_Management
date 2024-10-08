@@ -2,10 +2,15 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Button from '../../Components/Button/Button';
 import '../../Styles/GoalPageOne.css'
-const GoalpageOne = ({setOpen}) => {
+import { useDispatch, useSelector } from 'react-redux';
+import { Increment,Decrement } from '../../slice/Buttonslice';
+import { setGoalDomainId } from '../../slice/CreateGoal';
 
+const GoalpageOne = ({setOpen}) => {
+    const  dispatch = useDispatch();
     const [domain, setdomains] = useState([])
     const [elementactive , setelementactive] = useState("")
+    const [domainId,setDomainId] = useState(null)
     const fetchDomains = async () => {
         try {
             const response = await axios.get('http://localhost:8081/master/domains');
@@ -23,6 +28,15 @@ const GoalpageOne = ({setOpen}) => {
         fetchDomains();
     }, []);
     console.log(domain)
+
+    const handleIncrement = async () =>{
+        dispatch(Increment())
+        dispatch(setGoalDomainId(domainId))
+    }
+
+    const handleDecrement = async () => {
+        dispatch(Decrement())
+    }
     return (
         <div className="pageone">
             <div className="uppercontent">
@@ -34,7 +48,7 @@ const GoalpageOne = ({setOpen}) => {
                 </div>
                 <div className="options">
                     {domain.map((item, index) => (
-                        <div className={elementactive === item.name ? "elementactive" : "elements"} key={index} onClick={()=>{setelementactive(item.name)}}>
+                        <div className={elementactive === item.name ? "elementactive" : "elements"} key={index} onClick={()=>{setelementactive(item.name),setDomainId(item.id)}}>
                             <li><input type="radio" name="element" id="" checked = {elementactive === item.name}/></li>
                             <li>{item.name}</li>
                         </div>
@@ -42,7 +56,7 @@ const GoalpageOne = ({setOpen}) => {
                 </div>
             </div>
             <div className="button">
-                < Button next={setOpen} />
+                <Button next={handleIncrement} back={handleDecrement} />
             </div>
         </div>
     );
