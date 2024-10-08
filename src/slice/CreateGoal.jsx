@@ -34,14 +34,6 @@ const CreateGoalInsertion = createSlice({
             const data = action.payload;
             state.push(data)
         },
-        setStartAt(state, action){
-            const data = action.payload
-            state.goal.start_at = data
-        },
-        setEndAt(state, action){
-            const data = action.payload
-            state.goal.end_at = data
-        },
         setGoalUsers(state, action) {
             const users = action.payload;
             state.goal_users.users = users;
@@ -51,10 +43,12 @@ const CreateGoalInsertion = createSlice({
             state.goal.domain_id = data
         },
         addGoaltitles(state,action){
-            const {title,description,hashtag_id} = action.payload
+            const {title,description,hashtag_id,startAt,endAt} = action.payload
             state.goal.goal_title = title
             state.goal.goal_description = description
             state.goal.hashtag_id = hashtag_id
+            state.goal.start_at = startAt
+            state.goal.end_at = endAt
         }
     }
 })

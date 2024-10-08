@@ -148,7 +148,7 @@ const GoalPageTwo = () => {
 
   const handleIncrement = async () => {
     dispatch(Increment());
-    dispatch(addGoaltitles({title,description,hashtag_id}))
+    dispatch(addGoaltitles({title,description,hashtag_id,startAt,endAt}))
   };
 
   const handleDecrement = async () => {

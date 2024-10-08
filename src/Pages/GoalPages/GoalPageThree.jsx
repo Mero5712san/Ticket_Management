@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import Button from "../../Components/Button/Button";
 import "../../Styles/GoalPageThree.css";
 import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { Increment, Decrement } from "../../slice/Buttonslice";
 
-const GoalPageThree = () => {
+const GoalPageThree = ({setopencondition}) => {
   const [selectedOption, setSelectedOption] = useState(""); // State to track selected option
   const dispatch = useDispatch();
+  const goals = useSelector((s)=>s.createGoal)
 
   // Handle radio button change
   const handleOptionChange = (event) => {
@@ -14,7 +16,12 @@ const GoalPageThree = () => {
   };
 
   const handleIncrement = async () => {
+    if(selectedOption==="no"){
+        setopencondition(false)
+    }
+    else{
     dispatch(Increment());
+    }
   };
 
   const handleDecrement = async () => {
