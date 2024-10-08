@@ -35,14 +35,14 @@ const MyCalendar = ({ selectedRange, setSelectedRange }) => {
   return (
     <div>
       <Calendar
-        selectRange={true} // Enable date range selection
-        onChange={setSelectedRange} // Update selected range
-        value={selectedRange} // Current selected range value
+        selectRange={true} 
+        onChange={setSelectedRange} 
+        value={selectedRange}
         view="month"
-        activeStartDate={currentDate} // Controls the current active month
+        activeStartDate={currentDate}
         onActiveStartDateChange={({ activeStartDate }) => setCurrentDate(activeStartDate)}
-        nextLabel={null} // Disable next button if not required
-        prevLabel={null} // Disable previous button if not required
+        nextLabel={null} 
+        prevLabel={null} 
         navigationLabel={({ date }) => (
           <div className="calendar-dropdowns">
             {/* Month Dropdown */}
