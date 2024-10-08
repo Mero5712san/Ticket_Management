@@ -69,7 +69,7 @@ function CalendarPopup({ open, setOpen, setStart, setEnd, start, end }) {
         dispatch(setEndAt(end_at))
 
        setStart(start_at)
-       setEnd(start_at)
+       setEnd(end_at)
 
         console.log({ start_at, end_at });  
         handleClose();
