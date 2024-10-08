@@ -8,7 +8,7 @@ const initialState = {
         hashtag_id:null,
         start_at:null,
         end_at:null,
-        status_id:null,
+        status_id:2,
         goal_created_by:1,
         is_active:true
     },

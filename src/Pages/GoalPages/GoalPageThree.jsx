@@ -4,6 +4,7 @@ import "../../Styles/GoalPageThree.css";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { Increment, Decrement } from "../../slice/Buttonslice";
+import axios from "axios";
 
 const GoalPageThree = ({setopencondition}) => {
   const [selectedOption, setSelectedOption] = useState(""); // State to track selected option
@@ -17,7 +18,23 @@ const GoalPageThree = ({setopencondition}) => {
 
   const handleIncrement = async () => {
     if(selectedOption==="no"){
-        setopencondition(false)
+        console.log(goals);
+        try{
+            const response = await axios.post('http://localhost:8081/goal/create', goals, {
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+              })
+            if(response.status===201){
+                console.log("Goal Created successfully",response);
+                alert("Goal Created")
+                setopencondition(false)
+            }
+        }
+        catch(error){
+            alert("error while creating goal")
+            setopencondition(false)
+        }
     }
     else{
     dispatch(Increment());
