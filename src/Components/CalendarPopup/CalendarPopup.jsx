@@ -29,7 +29,7 @@ const style = {
     justifyContent:'space-between'
 };
 
-function CalendarPopup({ open, setOpen }) {
+function CalendarPopup({ open, setOpen, setStart, setEnd }) {
     const [selectedRange, setSelectedRange] = React.useState([new Date(), new Date()]);
     const [startTime, setStartTime] = React.useState(dayjs('2022-04-17T15:30'));
     const [endTime, setEndTime] = React.useState(dayjs('2022-04-17T15:30'));
@@ -57,9 +57,20 @@ function CalendarPopup({ open, setOpen }) {
 
         dispatch(setStartAt(start_at))
         dispatch(setEndAt(end_at))
+       const start=dayjs(selectedData.startDate)
+       .set('hour', dayjs(selectedData.startTime, 'HH:mm').hour())     
+       .set('minute', dayjs(selectedData.startTime, 'HH:mm').minute()) 
+       .format('MMMM D, YYYY h:mm A');
 
+       const end =  dayjs(selectedData.endDate)
+       .set('hour', dayjs(selectedData.endTime, 'HH:mm').hour())      
+       .set('minute', dayjs(selectedData.endTime, 'HH:mm').minute())   
+       .format('MMMM D, YYYY h:mm A');
 
-        console.log(start_at , end_at);  
+       setStart(start)
+       setEnd(end)
+
+        console.log(start, end);  
         handleClose();
     };
 
