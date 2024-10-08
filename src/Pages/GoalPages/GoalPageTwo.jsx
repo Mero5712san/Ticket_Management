@@ -7,6 +7,7 @@ import { TextField, Typography } from "@mui/material";
 import Button from "../../Components/Button/Button";
 import { useSelector } from "react-redux";
 import CalendarPopup from "../../Components/CalendarPopup/CalendarPopup";
+import CenterBox from "../../Components/SideBox/CenterBox";
 
 const GoalPageTwo = () => {
   const [hashtagData, setHashtagData] = useState([]);
@@ -15,6 +16,7 @@ const GoalPageTwo = () => {
   const [hashtag_id,setHashtag_id] = useState(null)
   const [loading, setLoading] = useState(false);
   const [calenderOpen, setCalenderOpen] = useState(false)
+  const [userOpen, setUserOpen] = useState(false)
   const GoalUsers = useSelector((s) => s.createGoal.goal_users.users); // Correctly access goal_users from Redux store
   console.log("goalusers", GoalUsers);
   
@@ -200,7 +202,8 @@ const GoalPageTwo = () => {
             <Typography>Set Time Frame</Typography>
           </div>
         </div>
-        <div className="GoalPageOneOptionDiv" style={{gap:"0.8rem"}}>
+        <CenterBox opencondition={userOpen} setopencondition={setUserOpen}/>
+        <div className="GoalPageOneOptionDiv" style={{gap:"0.8rem"}} onClick={()=>setUserOpen(true)} >
           <div className="GoaliconDiv">
             <img src="./images/add-user.png" alt="" height={18} />
           </div>

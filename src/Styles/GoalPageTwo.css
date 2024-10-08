@@ -1,7 +1,7 @@
 .GoalTitleDiv{
     display: flex;
     height: 34vh;
-    width: 90%;
+    width: 98%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -11,7 +11,7 @@
 }
 .goalTopDiv{
     width: 100%;
-    margin: 2rem;
+    margin: 1.5rem;
     margin-left: 1.4rem;
 }
 .TextArea{
@@ -51,5 +51,8 @@
     flex-direction: column;
     justify-content: space-between;
     height: 100vh;
-    padding-bottom: 1rem;
+}
+.GoalP2BtnDiv{
+    margin: 1.2rem;
+    width: 100%;
 }

@@ -41,7 +41,6 @@ const GoalCreationComponent = ({ opencondition, setopencondition }) => {
                         {/* Add your modal content here */}
                         <div className="slider">
                             <span className='slidercomponent'><StepperComponent steppervalue =  {open}/> </span>
-                            <hr color='#d0d0d0' width='0.5rem' />
                         </div>
                         <div>
                             {open === 1 && <GoalpageOne />}

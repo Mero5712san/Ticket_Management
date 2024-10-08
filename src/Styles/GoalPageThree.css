@@ -9,7 +9,7 @@
 }
 
 .pagethree .uppercontainer{
-    padding-top: 1rem;
+    padding: 1.5rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -32,7 +32,7 @@
 
 .pagethree .uppercontainer .option{
     display: flex;
-    width:95%;
+    width:100%;
     justify-content: space-between;
     align-items: center;
 }
@@ -62,5 +62,5 @@
 }
 
 .pagethree .lowercontent{
-    width:36vw;
+    width:35vw;
 }
