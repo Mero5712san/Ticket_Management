@@ -1,19 +1,17 @@
 import React from 'react';
 import '../../Styles/Button.css'
-import { useDispatch, useSelector } from 'react-redux';
-import { Increment,Decrement } from '../../slice/Buttonslice';
-const Button = () => {
-    const  dispatch = useDispatch();
+
+const Button = ({next,back}) => {
 
     return (
         <div>
             <div className="lowercontent">
-                <button className="back" onClick={()=>{dispatch(Decrement())}}>
+                <button className="back" onClick={back}>
                     Go Back
                 </button>
-                <button className="next" onClick={()=>{dispatch(Increment())}}>
+                <button className="next" onClick={next}>
                     continue
-                </button>
+                </button>   
             </div>
         </div>
     );
