@@ -11,6 +11,7 @@ import { FaRegStar } from "react-icons/fa6";
 import { GoDotFill } from "react-icons/go";
 import { HiDotsVertical } from "react-icons/hi";
 import Img from '../assets/noItemFound.webp'
+import Nodata from '../assets/nodata.svg'
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -124,7 +125,7 @@ const Sample = () => {
   }}
 >
   <Box>
-  <img src={Img} alt='No items found' style={{ marginBottom: '10px' }} />
+  <img src={Nodata} alt='No items found' style={{ marginBottom: '1px' , width:'30rem', height:'30rem'}} />
   <h4>No Items Found</h4>
   </Box>
 </Box>
