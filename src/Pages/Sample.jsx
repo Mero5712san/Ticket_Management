@@ -106,7 +106,7 @@ const Sample = () => {
             <Box bgcolor='white' mb={2} sx={{ borderRadius: '9px', padding: '10px', border: '1px solid #BDBDBD' }}>
               <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: '100%' }} >
                 <Box>
-                  <Typography sx={{ fontSize: '18px', fontWeight: 500 }}>{item.goal_title}</Typography></Box>
+                  <Typography sx={{ fontSize: '17px', fontWeight: 500 }}>{item.goal_title}</Typography></Box>
                 <Box sx={{ display: 'flex', gap: '15px', alignItems: 'center' }} >
                   <RiErrorWarningLine size={22} />
                   <FaRegStar size={22} />
@@ -114,14 +114,14 @@ const Sample = () => {
                 </Box>
               </Box>
               <Box sx={{ display: 'flex', gap: '5px', alignItems: 'center', color: '#6d6f6c', fontWeight: 500 }} mt={1} >
-                <Typography>45036 - Phase</Typography>
+                <Typography  sx={{ fontSize: '16px', fontWeight: 500 }}>45036 - Phase</Typography>
                 <Box sx={{ display: 'flex', gap: '5px', alignItems: 'center' }}>
                   <GoDotFill />
                   <Typography>{item.hashtag.name}</Typography>
                 </Box>
               </Box>
-              <Box mt={2} sx={{ display: 'flex', gap: '5px', alignItems: 'center', borderRadius: '40px', width: 'fit-content', backgroundColor: '#FFF2F2', padding:'4px' }}>
-                <Box sx={{ border: '2px solid #95A5A6', borderRadius: '50%', width: 'fit-content', padding: '3px', height:'33px', width:'33px', alignItems:'center' }}>
+              <Box mt={1} sx={{ display: 'flex', gap: '5px', alignItems: 'center', borderRadius: '40px', width: 'fit-content', backgroundColor: '#FFF2F2', padding:'4px' }}>
+                <Box sx={{ border: '2px solid #95A5A6', borderRadius: '50%', padding: '3px', height:'33px', width:'33px', alignItems:'center' }}>
                   <Typography sx={{ fontSize: '14px', fontWeight: 400 }}>33%</Typography>
                 </Box>
                 <Typography sx={{ fontSize: '17px', fontWeight: 400, marginRight: '4px', color: '#E74C3C' }}>At Risk</Typography>
