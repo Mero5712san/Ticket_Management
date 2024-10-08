@@ -42,6 +42,10 @@ const CreateGoalInsertion = createSlice({
             const data = action.payload
             state.goal.end_at = data
         },
+        setGoalUsers(state, action) {
+            const users = action.payload;
+            state.goal_users.users = users;
+        },
         setGoalDomainId(state,action){
             const data = action.payload
             state.goal.domain_id = data
@@ -55,5 +59,5 @@ const CreateGoalInsertion = createSlice({
     }
 })
 
-export const  {setGoalName, setStartAt, setEndAt, setGoalDomainId, addGoaltitles} = CreateGoalInsertion.actions
+export const  {setGoalName, setStartAt, setEndAt, setGoalDomainId, addGoaltitles, setGoalUsers} = CreateGoalInsertion.actions
 export const  CreateGoal = CreateGoalInsertion.reducer

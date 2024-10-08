@@ -4,6 +4,7 @@
     height: 100%;
     width: 100%;
     padding:1.2rem;
+    justify-content: space-between;
 }
 
 .userselect .heading{
@@ -62,7 +63,7 @@
 .userselect .existingmember .users .user .secondhalf img{
     width: 1rem;
     height: 1rem;
-
+    cursor: pointer;
 }
 .userselect .existingmember .users .user img{
     width: 1.5rem;
@@ -97,4 +98,39 @@
 
 .userselect .existingmember .users .user .secondhalf input{
     margin-right: 1rem;
+}
+
+
+
+.userselect .lowercontent{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.userselect .lowercontent button{
+    width: 100%;
+    background-color:#00B7A8 ;
+    border: none;
+    outline: none;
+    padding: 0.5rem;
+    border-radius:0.5rem;
+    cursor: pointer;
+    font-size:1rem;
+    font-weight: 600;
+    color: white;
+}
+
+.userselect .lowercontent .disabled{
+    width: 100%;
+    background-color:grey ;
+    border: none;
+    outline: none;
+    padding: 0.5rem;
+    border-radius:0.5rem;
+    font-size:1rem;
+    font-weight: 600;
+    color: white;
+    cursor:not-allowed;
 }
