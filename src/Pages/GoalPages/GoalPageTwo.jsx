@@ -236,11 +236,8 @@ const GoalPageTwo = () => {
           </div>
         </div>
         <CenterBox opencondition={userOpen} setopencondition={setUserOpen} />
-        <div
-          className="GoalPageOneOptionDiv"
-          style={{ gap: "0.8rem" }}
-          onClick={() => setUserOpen(true)}
-        >
+        <div className="GoalPageOneOptionDiv" style={{gap:"0.8rem"}} onClick={()=>setUserOpen(true)} >
+
           <div className="GoaliconDiv">
             <img src="./images/add-user.png" alt="" height={18} />
           </div>
