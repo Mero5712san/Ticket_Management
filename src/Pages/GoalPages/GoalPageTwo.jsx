@@ -10,6 +10,7 @@ import CalendarPopup from "../../Components/CalendarPopup/CalendarPopup";
 import CenterBox from "../../Components/SideBox/CenterBox";
 import { useDispatch } from "react-redux";
 import { Increment, Decrement } from "../../slice/Buttonslice";
+import { setEndAt, setStartAt } from "../../slice/CreateGoal";
 
 const GoalPageTwo = () => {
   const [hashtagData, setHashtagData] = useState([]);
@@ -17,8 +18,10 @@ const GoalPageTwo = () => {
   const [hashtagOptions, setHashtagOptions] = useState([]);
   const [hashtag_id, setHashtag_id] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [calenderOpen, setCalenderOpen] = useState(false);
-  const [userOpen, setUserOpen] = useState(false);
+  const [calenderOpen, setCalenderOpen] = useState(false)
+  const [userOpen, setUserOpen] = useState(false)
+  const [startAt, setStartAt] = useState(null)
+  const [endAt, setEndAt] = useState(null)
   const GoalUsers = useSelector((s) => s.createGoal.goal_users.users); // Correctly access goal_users from Redux store
   console.log("goalusers", GoalUsers);
   const  dispatch = useDispatch();
@@ -212,17 +215,15 @@ const GoalPageTwo = () => {
             />
           </div>
         </div>
-        <CalendarPopup open={calenderOpen} setOpen={setCalenderOpen} />
-        <div
-          className="GoalPageOneOptionDiv"
-          style={{ gap: "0.8rem" }}
-          onClick={handleCalenderClick}
-        >
+        <CalendarPopup open={calenderOpen} setOpen={setCalenderOpen}  setStart={setStartAt} setEnd={setEndAt} />
+        <div className="GoalPageOneOptionDiv" style={{gap:"0.8rem"}} onClick={handleCalenderClick}>
           <div className="GoaliconDiv">
             <img src="./images/calendar.png" alt="" height={18} />
           </div>
           <div>
-            <Typography>Set Time Frame</Typography>
+            {(startAt && endAt) ? <Typography>{startAt} - {endAt}</Typography>
+                        : <Typography sx={{ cursor:'pointer'}}>Set Time Frame</Typography>
+            }
           </div>
         </div>
         <CenterBox opencondition={userOpen} setopencondition={setUserOpen} />
