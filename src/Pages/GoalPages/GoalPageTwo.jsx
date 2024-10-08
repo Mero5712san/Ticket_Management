@@ -3,6 +3,7 @@ import "../../Styles/GoalPageTwo.css";
 import TagIcon from "@mui/icons-material/Tag";
 import Select from "react-select";
 import axios from "axios";
+import dayjs from 'dayjs';
 import { TextField, Typography } from "@mui/material";
 import Button from "../../Components/Button/Button";
 import { useSelector } from "react-redux";
@@ -22,6 +23,8 @@ const GoalPageTwo = () => {
   const [userOpen, setUserOpen] = useState(false)
   const [startAt, setStartAt] = useState(null)
   const [endAt, setEndAt] = useState(null)
+  const start = useSelector((s) => s.createGoal.goal.start_at)
+  const end = useSelector((s) => s.createGoal.goal.end_at)
   const GoalUsers = useSelector((s) => s.createGoal.goal_users.users); // Correctly access goal_users from Redux store
   console.log("goalusers", GoalUsers);
   const  dispatch = useDispatch();
@@ -54,6 +57,10 @@ const GoalPageTwo = () => {
   useEffect(() => {
     fetchHashtagData();
   }, []);
+
+  // Disable dates outside of the range defined by `start` and `end`
+  const minDate = start ? dayjs(start).toDate() : null;
+  const maxDate = end ? dayjs(end).toDate() : null;
 
   const customStyles = {
     control: (base, state) => ({
@@ -146,6 +153,8 @@ const GoalPageTwo = () => {
     dispatch(Decrement());
   };
 
+  
+
   return (
     <div className="GoalP2MainDiv">
       <div className="goalTopDiv">
@@ -215,7 +224,7 @@ const GoalPageTwo = () => {
             />
           </div>
         </div>
-        <CalendarPopup open={calenderOpen} setOpen={setCalenderOpen}  setStart={setStartAt} setEnd={setEndAt} />
+        <CalendarPopup open={calenderOpen} setOpen={setCalenderOpen}  setStart={setStartAt} setEnd={setEndAt} start={minDate} end={maxDate} />
         <div className="GoalPageOneOptionDiv" style={{gap:"0.8rem"}} onClick={handleCalenderClick}>
           <div className="GoaliconDiv">
             <img src="./images/calendar.png" alt="" height={18} />

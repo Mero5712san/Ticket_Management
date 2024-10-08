@@ -6,6 +6,7 @@ import Modal from "@mui/material/Modal";
 import CloseIcon from '@mui/icons-material/Close';
 import dayjs from 'dayjs';
 import { useDispatch } from "react-redux";
+import { useSelector } from 'react-redux'
 import { setStartAt, setEndAt  } from "../../slice/CreateGoal";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DesktopTimePicker } from '@mui/x-date-pickers/DesktopTimePicker';
@@ -29,14 +30,19 @@ const style = {
     justifyContent:'space-between'
 };
 
-function CalendarPopup({ open, setOpen, setStart, setEnd }) {
+function CalendarPopup({ open, setOpen, setStart, setEnd, start, end }) {
     const [selectedRange, setSelectedRange] = React.useState([new Date(), new Date()]);
-    const [startTime, setStartTime] = React.useState(dayjs('2022-04-17T15:30'));
-    const [endTime, setEndTime] = React.useState(dayjs('2022-04-17T15:30'));
+    // const start = useSelector((s) => s.createGoal.goal.start_at)
+    // const end = useSelector((s) => s.createGoal.goal.end_at)
+
+    const [startTime, setStartTime] = React.useState(dayjs());
+    const [endTime, setEndTime] = React.useState(dayjs());
 
     const handleClose = () => setOpen(false);
 
     const dispatch = useDispatch();
+
+    console.log(start,end)
 
     const handleSave = () => {
         const selectedData = {
@@ -45,34 +51,37 @@ function CalendarPopup({ open, setOpen, setStart, setEnd }) {
             startTime: startTime.format('HH:mm'), 
             endTime: endTime.format('HH:mm'),
         };
-        const start_at = dayjs(selectedRange[0])
-        .set('hour', startTime.hour())
-        .set('minute', startTime.minute())
-        .toISOString(); 
 
-       const end_at = dayjs(selectedRange[1])
-        .set('hour', endTime.hour())
-        .set('minute', endTime.minute())
-        .toISOString();
+        const parsedStartTime = dayjs(startTime, 'HH:mm');
+        const parsedEndTime = dayjs(endTime, 'HH:mm'); 
+
+        const start_at =dayjs(selectedData.startDate)
+        .set('hour', parsedStartTime.hour())    
+        .set('minute', parsedStartTime.minute()) 
+        .format('MMMM D, YYYY h:mm A');; 
+
+       const end_at = dayjs(selectedData.endDate)
+       .set('hour', parsedEndTime.hour())       
+       .set('minute', parsedEndTime.minute())   
+       .format('MMMM D, YYYY h:mm A');
 
         dispatch(setStartAt(start_at))
         dispatch(setEndAt(end_at))
-       const start=dayjs(selectedData.startDate)
-       .set('hour', dayjs(selectedData.startTime, 'HH:mm').hour())     
-       .set('minute', dayjs(selectedData.startTime, 'HH:mm').minute()) 
-       .format('MMMM D, YYYY h:mm A');
 
-       const end =  dayjs(selectedData.endDate)
-       .set('hour', dayjs(selectedData.endTime, 'HH:mm').hour())      
-       .set('minute', dayjs(selectedData.endTime, 'HH:mm').minute())   
-       .format('MMMM D, YYYY h:mm A');
+       setStart(start_at)
+       setEnd(start_at)
 
-       setStart(start)
-       setEnd(end)
-
-        console.log(start, end);  
+        console.log({ start_at, end_at });  
         handleClose();
     };
+
+    // Disable dates outside of the range defined by `start` and `end`
+    const minDate = start ? dayjs(start).toDate() : null;
+    const maxDate = end ? dayjs(end).toDate() : null;
+
+    // Validate that the selected time is within the same day and range
+    const isStartTimeValid = startTime.isBefore(endTime) || startTime.isSame(endTime);
+    const isEndTimeValid = endTime.isAfter(startTime) || endTime.isSame(startTime);
 
     return (
         <div>
@@ -93,7 +102,7 @@ function CalendarPopup({ open, setOpen, setStart, setEnd }) {
 
                         {/* Calendar Component */}
                         <Box m={2}>
-                            <Calendar selectedRange={selectedRange} setSelectedRange={setSelectedRange} />
+                            <Calendar selectedRange={selectedRange} setSelectedRange={setSelectedRange}  minDate={minDate} maxDate={maxDate}  />
                         </Box>
 
                         {/* Time Pickers */}
@@ -116,7 +125,7 @@ function CalendarPopup({ open, setOpen, setStart, setEnd }) {
                         </Box>
 
                         <Box mt={1} mb={0}>
-                            <Button variant="contained" sx={{ width: '100%', backgroundColor: '#186b61' }} onClick={handleSave}>
+                            <Button variant="contained" sx={{ width: '100%', backgroundColor: '#186b61' }} onClick={handleSave} disabled={!isStartTimeValid || !isEndTimeValid} >
                                 Set Range
                             </Button>
                         </Box>
