@@ -5,10 +5,12 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import CloseIcon from '@mui/icons-material/Close';
 import dayjs from 'dayjs';
+import { useDispatch } from "react-redux";
+import { setStartAt, setEndAt  } from "../../slice/CreateGoal";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DesktopTimePicker } from '@mui/x-date-pickers/DesktopTimePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import Calendar from './Calendar';  // Import your MyCalendar component
+import Calendar from './Calendar';  
 
 const style = {
     position: "absolute",
@@ -21,10 +23,10 @@ const style = {
     boxShadow: 24,
     borderRadius: 3,
     p: 2,
-    height: "80%",
+    height: "85%",
     display: 'flex',
     flexDirection: 'column',
-    gap: '20px'
+    justifyContent:'space-between'
 };
 
 function CalendarPopup({ open, setOpen }) {
@@ -34,6 +36,8 @@ function CalendarPopup({ open, setOpen }) {
 
     const handleClose = () => setOpen(false);
 
+    const dispatch = useDispatch();
+
     const handleSave = () => {
         const selectedData = {
             startDate: selectedRange[0],
@@ -41,7 +45,21 @@ function CalendarPopup({ open, setOpen }) {
             startTime: startTime.format('HH:mm'), 
             endTime: endTime.format('HH:mm'),
         };
-        console.log(selectedData);  
+        const start_at = dayjs(selectedRange[0])
+        .set('hour', startTime.hour())
+        .set('minute', startTime.minute())
+        .toISOString(); 
+
+       const end_at = dayjs(selectedRange[1])
+        .set('hour', endTime.hour())
+        .set('minute', endTime.minute())
+        .toISOString();
+
+        dispatch(setStartAt(start_at))
+        dispatch(setEndAt(end_at))
+
+
+        console.log(start_at , end_at);  
         handleClose();
     };
 
@@ -86,7 +104,7 @@ function CalendarPopup({ open, setOpen }) {
                             />
                         </Box>
 
-                        <Box mt={2}>
+                        <Box mt={1} mb={0}>
                             <Button variant="contained" sx={{ width: '100%', backgroundColor: '#186b61' }} onClick={handleSave}>
                                 Set Range
                             </Button>
