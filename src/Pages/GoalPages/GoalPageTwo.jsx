@@ -10,6 +10,7 @@ import CalendarPopup from "../../Components/CalendarPopup/CalendarPopup";
 import CenterBox from "../../Components/SideBox/CenterBox";
 import { useDispatch } from "react-redux";
 import { Increment, Decrement } from "../../slice/Buttonslice";
+import { addGoaltitles } from "../../slice/CreateGoal";
 
 const GoalPageTwo = () => {
   const [hashtagData, setHashtagData] = useState([]);
@@ -137,6 +138,7 @@ const GoalPageTwo = () => {
 
   const handleIncrement = async () => {
     dispatch(Increment());
+    dispatch(addGoaltitles({title,description,hashtag_id}))
   };
 
   const handleDecrement = async () => {

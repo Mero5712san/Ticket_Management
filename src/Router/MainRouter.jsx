@@ -17,6 +17,7 @@ const MainRouter = () => {
                     </div>
                     <Routes>
                         <Route path='/' element={<Sample/>}  />
+                        <Route path='/goals' element={<Sample/>}  />
                     </Routes>
                 </div>
             </BrowserRouter>

@@ -40,8 +40,8 @@ const Menubar = () => {
                     <li className="iconname">Actions</li>
                 </a>
             </div>
-            <div className={isActive('/orders') ? 'menulistactive' : 'menulist'}>
-                <a href="/orders" onClick={(e) => { e.preventDefault(); navigate("/orders"); }}>
+            <div className={isActive('/goals') ? 'menulistactive' : 'menulist'}>
+                <a href="/goals" onClick={(e) => { e.preventDefault(); navigate("/goals"); }}>
                     <li className="iconimg">
                         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 50 50" xml:space="preserve">
                             <g id="Layer_1">

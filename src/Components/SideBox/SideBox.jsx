@@ -8,6 +8,7 @@ import GoalPageThree from '../../Pages/GoalPages/GoalPageThree';
 import GoalPageTwo from '../../Pages/GoalPages/GoalPageTwo';
 import GoalpageOne from '../../Pages/GoalPages/GoalPageOne';
 import { useSelector } from 'react-redux';
+
 const style = {
     position: "absolute",
     top: "50%",
