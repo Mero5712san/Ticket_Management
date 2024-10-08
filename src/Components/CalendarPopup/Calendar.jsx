@@ -4,7 +4,7 @@ import 'react-calendar/dist/Calendar.css';
 import './MyCalendar.css'; 
 import { Box } from '@mui/material';
 
-const MyCalendar = ({ selectedRange, setSelectedRange }) => {
+const MyCalendar = ({ selectedRange, setSelectedRange, minDate, maxDate }) => {
   const [currentDate, setCurrentDate] = React.useState(new Date());
 
   const getYears = () => {
@@ -79,6 +79,8 @@ const MyCalendar = ({ selectedRange, setSelectedRange }) => {
           </div>
         )}
         tileClassName={tileClassName} 
+        minDate={minDate} 
+        maxDate={maxDate}
       />
 
       {selectedRange.length === 2 && (
