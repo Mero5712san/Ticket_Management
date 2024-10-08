@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import CenterBox from '../Components/SideBox/CenterBox';
 import '../Styles/Sample.css'
 import { styled, alpha } from '@mui/material/styles';
@@ -57,8 +58,24 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
+
 const Sample = () => {
   const [sidecondition, setsidecondition] = useState(false)
+  const [goals, setGoals] = useState([])
+  const fetchGoals = async () => {
+    try{
+      const response = await axios.get('http://localhost:8081/goal/')
+      if(response.status === 200) setGoals(response.data)
+      console.log(goals)
+      
+    } catch (error){
+      console.log("error while fetching data", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchGoals();
+}, []);
 
   return (
     <div className='sam-background'>
@@ -85,50 +102,52 @@ const Sample = () => {
             <MdPeopleOutline size={22} />
           </Box>
           <Box>
-            <Box bgcolor='white' sx={{ borderRadius: '9px', padding: '10px' }}>
+            {goals.map((item, index) => (
+            <Box bgcolor='white' mb={2} sx={{ borderRadius: '9px', padding: '10px', border: '1px solid #BDBDBD' }}>
               <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: '100%' }} >
                 <Box>
-                  <Typography sx={{ fontSize: '18px', fontWeight: 500 }}>P1</Typography></Box>
+                  <Typography sx={{ fontSize: '18px', fontWeight: 500 }}>{item.goal_title}</Typography></Box>
                 <Box sx={{ display: 'flex', gap: '15px', alignItems: 'center' }} >
                   <RiErrorWarningLine size={22} />
                   <FaRegStar size={22} />
                   <HiDotsVertical size={22} />
                 </Box>
               </Box>
-              <Box sx={{ display: 'flex', gap: '5px', alignItems: 'center', color: '#6d6f6c' }} mt={1} >
-                <h4>45036 - Phase</h4>
+              <Box sx={{ display: 'flex', gap: '5px', alignItems: 'center', color: '#6d6f6c', fontWeight: 500 }} mt={1} >
+                <Typography>45036 - Phase</Typography>
                 <Box sx={{ display: 'flex', gap: '5px', alignItems: 'center' }}>
                   <GoDotFill />
-                  <h4>BIT</h4>
+                  <Typography>{item.hashtag.name}</Typography>
                 </Box>
               </Box>
-              <Box mt={2} sx={{ display: 'flex', gap: '5px', alignItems: 'center', border: '1px solid gray', borderRadius: '40px', width: 'fit-content', backgroundColor: '#f2eae8' }}>
-                <Box sx={{ border: '1px solid gray', borderRadius: '50%', width: 'fit-content', padding: '3px' }}>
-                  <Typography sx={{ fontSize: '13px', fontWeight: 400 }}>33%</Typography>
+              <Box mt={2} sx={{ display: 'flex', gap: '5px', alignItems: 'center', borderRadius: '40px', width: 'fit-content', backgroundColor: '#FFF2F2', padding:'4px' }}>
+                <Box sx={{ border: '2px solid #95A5A6', borderRadius: '50%', width: 'fit-content', padding: '3px', height:'33px', width:'33px', alignItems:'center' }}>
+                  <Typography sx={{ fontSize: '14px', fontWeight: 400 }}>33%</Typography>
                 </Box>
-                <Typography sx={{ fontSize: '17px', fontWeight: 400, marginRight: '4px', color: '#dc7b63' }}>At Risk</Typography>
+                <Typography sx={{ fontSize: '17px', fontWeight: 400, marginRight: '4px', color: '#E74C3C' }}>At Risk</Typography>
               </Box>
             </Box>
+            ))}
           </Box>
         </Box>
-        <Box 
-  flex={8} 
-  sx={{ 
-    display: 'flex', 
-    width: '100%', 
-    height: '100%', 
-    alignItems: 'center', 
-    justifyContent: 'center', 
-    flexDirection: 'column', 
-    fontSize: '18px',
-    textAlign: 'center' 
-  }}
->
-  <Box>
-  <img src={Nodata} alt='No items found' style={{ marginBottom: '1px' , width:'30rem', height:'30rem'}} />
-  <h4>No Items Found</h4>
-  </Box>
-</Box>
+        <Box
+          flex={8}
+          sx={{
+            display: 'flex',
+            width: '100%',
+            height: '100%',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexDirection: 'column',
+            fontSize: '18px',
+            textAlign: 'center'
+          }}
+        >
+          <Box>
+            <img src={Nodata} alt='No items found' style={{ marginBottom: '1px', width: '30rem', height: '30rem' }} />
+            <h4>No Items Found</h4>
+          </Box>
+        </Box>
 
       </Stack>
 
